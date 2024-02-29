@@ -1,0 +1,29 @@
+{
+  "name": "blossom.utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CosmosPortalDevelopment/blossom.utils.git"
+  },
+  "keywords": [],
+  "author": "Cosmos Portal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CosmosPortalDevelopment/blossom.utils/issues"
+  },
+  "homepage": "https://github.com/CosmosPortalDevelopment/blossom.utils#readme",
+  "dependencies": {
+    "discord.js": "^14.14.1"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3"
+  }
+}
