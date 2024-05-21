@@ -1,6 +1,6 @@
 {
   "name": "@cosmosportal/blossom.utils",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -19,11 +19,11 @@
   },
   "homepage": "https://github.com/CosmosPortalDevelopment/blossom.utils#readme",
   "dependencies": {
-    "discord.js": "^14.14.1"
+    "discord.js": "^14.15.2"
   },
   "devDependencies": {
     "tsup": "^8.0.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.5"
   },
   "description": ""
 }
