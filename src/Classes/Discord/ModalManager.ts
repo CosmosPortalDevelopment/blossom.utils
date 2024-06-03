@@ -1,13 +1,64 @@
 import { ComponentType, type APIActionRowComponent, type APIModalInteractionResponseCallbackData, type APITextInputComponent } from "discord-api-types/v10";
-import type { TextInput } from "../../Interfaces";
+import type { InteractionResponseActions, Modal, TextInput } from "../../Interfaces";
 
 export class ModalManager {
+    private _title: string;
+    private _custom_id: string;
     private _Components: APIActionRowComponent<APITextInputComponent>[];
 
-    constructor() {
+    /**
+     * @example
+     * ```ts
+     * const Modal = new ModalManager({
+     *     custom_id: "cool_modal",
+     *     title: "My Cool Modal"
+     * });
+     * ```
+     * @example
+     * A fully created modal:
+     * ```ts
+     * const Modal = new ModalManager({
+     *     custom_id: "cool_modal",
+     *     title: "My Cool Modal"
+     * })
+     * .CreateTextInput({
+     *     custom_id: "name",
+     *     label: "Name",
+     *     style: TextInputStyle.Short,
+     *     max_length: 4000,
+     *     min_length: 1,
+     *     placeholder: "John",
+     *     required: true,
+     *     value: undefined
+     * })
+     * .BuildComponent({
+     *     build_modal: true
+     * });
+     * ```
+     */
+    constructor(component_data: Modal) {
+        this._title = component_data.title;
+        this._custom_id = component_data.custom_id;
         this._Components = [];
     };
 
+    /**
+     * Creates the text input component for the modal
+     * @param component_data - The structure of data needed to create the component.
+     * 
+     * @example
+     * ```ts
+     * Modal.CreateTextInput({
+     *     custom_id: "name",
+     *     label: "Name",
+     *     style: TextInputStyle.Short,
+     *     max_length: 4000,
+     *     min_length: 1,
+     *     placeholder: "John",
+     *     required: true,
+     *     value: undefined
+     * });
+     */
     public CreateTextInput(component_data: TextInput): this {
         const data: APIActionRowComponent<APITextInputComponent> = {
             type: ComponentType.ActionRow,
@@ -31,13 +82,40 @@ export class ModalManager {
         return this;
     };
 
-    public BuildModal(title: string, custom_id: string): APIModalInteractionResponseCallbackData {
+    /**
+     * Either creates the modal response containing the text input components or returns the text input components
+     * @param actions - The structure of actions required while building the component
+     * 
+     * @example
+     * ```ts
+     * Modal.BuildComponent();
+     * ```
+     * 
+     * @example
+     * Returns the text input components in a modal response
+     * ```ts
+     * Modal.BuildComponent({
+     *     build_modal: true
+     * });
+     * ```
+     *  
+     * @example
+     * Returns the text input components
+     * ```ts
+     * Modal.BuildComponent({
+     *     build_modal: false
+     * });
+     * ```
+     */
+    public BuildComponent(actions?: InteractionResponseActions): APIActionRowComponent<APITextInputComponent>[] | APIModalInteractionResponseCallbackData {
+        actions = actions ?? { build_modal: true };
+
         const data: APIModalInteractionResponseCallbackData = {
-            title: title,
-            custom_id: custom_id,
+            title: this._title,
+            custom_id: this._custom_id,
             components: this._Components
         };
 
-        return data;
+        return !actions.build_modal ? this._Components : data;
     };
 };

@@ -1,3 +1,20 @@
+/**
+ * Checks if a URL is in a valid format
+ * @param {string} url - The URL to check
+ * 
+ * @example
+ * ```ts
+ * client.on(Events.InteractionCreate, async interaction => {
+ *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
+ * 
+ *     const url = interaction.options.getString("url", true);
+ * 
+ *     await interaction.reply({
+ *         content: `Is the URL a valid format?\nResult: ${IsValidURLFormat(url)}`
+ *     });
+ * });
+ * ```
+ */
 export function IsValidURLFormat(url: string): boolean {
     const regex = /^(https?:\/\/)?((([a-zA-Z\d]([a-zA-Z\d-]*[a-zA-Z\d])*)\.)+[a-zA-Z]{2,}|((\d{1,3}\.){3}\d{1,3}))(:\d+)?(\/[-a-zA-Z\d%@_.~+&:]*)*(\?[;&a-zA-Z\d%@_.,~+&:=-]*)?(#[-a-zA-Z\d_]*)?$/i;
 
