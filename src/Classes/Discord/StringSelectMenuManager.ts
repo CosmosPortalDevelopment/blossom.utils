@@ -1,5 +1,5 @@
 import { ComponentType, type APIActionRowComponent, type APIMessageActionRowComponent, type APIMessageComponent, type APIStringSelectComponent } from "discord-api-types/v10";
-import type { MessageComponentActions, StringSelectMenu } from "../../Interfaces";
+import type { StringSelectMenu } from "../../Interfaces";
 
 export class StringSelectMenuManager {
     private _Components: APIStringSelectComponent[];
@@ -36,9 +36,7 @@ export class StringSelectMenuManager {
      *     min_values: 1,
      *     placeholder: "Choose a desk"
      * })
-     * .BuildComponent({
-     *     build_action_row: true
-     * });
+     * .BuildActionRow();
      * ```
      */
     constructor() {
@@ -93,38 +91,31 @@ export class StringSelectMenuManager {
     };
 
     /**
-     * Either creates the action row containing the string select menu component or returns the string select menu component
-     * @param actions - The structure of actions required while building the component
+     * Creates the action row containing the string select menu component
      * 
      * @example
      * ```ts
-     * SelectMenu.BuildComponent();
-     * ```
-     * 
-     * @example
-     * Returns the component in an action row
-     * ```ts
-     * SelectMenu.BuildComponent({
-     *     build_action_row: true
-     * });
-     * ```
-     *  
-     * @example
-     * Returns the component
-     * ```ts
-     * SelectMenu.BuildComponent({
-     *     build_action_row: false
-     * });
+     * SelectMenu.BuildActionRow();
      * ```
      */
-    public BuildComponent(actions?: MessageComponentActions): APIActionRowComponent<APIMessageActionRowComponent> | APIStringSelectComponent[] {
-        actions = actions ?? { build_action_row: true };
-
+    public BuildActionRow(): APIActionRowComponent<APIMessageActionRowComponent> {
         const data: APIMessageComponent = {
             type: ComponentType.ActionRow,
             components: this._Components
         };
 
-        return !actions.build_action_row ? this._Components : data;
+        return data;
+    };
+
+    /**
+     * Returns the string select menu component
+     * 
+     * @example
+     * ```ts
+     * SelectMenu.BuildComponent();
+     * ```
+     */
+    public BuildComponent(): APIStringSelectComponent[] {
+        return this._Components;
     };
 };

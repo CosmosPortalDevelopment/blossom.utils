@@ -1,5 +1,5 @@
 import { ComponentType, type APIActionRowComponent, type APIMessageActionRowComponent, type APIMessageComponent, type APIRoleSelectComponent } from "discord-api-types/v10";
-import type { MessageComponentActions, RoleSelectMenu } from "../../Interfaces";
+import type { RoleSelectMenu } from "../../Interfaces";
 
 export class RoleSelectMenuManager {
     private _Components: APIRoleSelectComponent[];
@@ -21,9 +21,7 @@ export class RoleSelectMenuManager {
      *     min_values: 1,
      *     placeholder: "Choose a class role"
      * })
-     * .BuildComponent({
-     *     build_action_row: true
-     * });
+     * .BuildActionRow();
      * ```
      */
     constructor() {
@@ -63,38 +61,31 @@ export class RoleSelectMenuManager {
     };
 
     /**
-     * Either creates the action row containing the role select menu component or returns the role select menu component
-     * @param actions - The structure of actions required while building the component
+     * Creates the action row containing the role select menu component
      * 
      * @example
      * ```ts
-     * SelectMenu.BuildComponent();
-     * ```
-     * 
-     * @example
-     * Returns the component in an action row
-     * ```ts
-     * SelectMenu.BuildComponent({
-     *     build_action_row: true
-     * });
-     * ```
-     *  
-     * @example
-     * Returns the component
-     * ```ts
-     * SelectMenu.BuildComponent({
-     *     build_action_row: false
-     * });
+     * SelectMenu.BuildActionRow();
      * ```
      */
-    public BuildComponent(actions?: MessageComponentActions): APIActionRowComponent<APIMessageActionRowComponent> | APIRoleSelectComponent[] {
-        actions = actions ?? { build_action_row: true };
-
+    public BuildActionRow(): APIActionRowComponent<APIMessageActionRowComponent> {
         const data: APIMessageComponent = {
             type: ComponentType.ActionRow,
             components: this._Components
         };
 
-        return !actions.build_action_row ? this._Components : data;
+        return data;
+    };
+
+    /**
+     * Returns the role select menu component
+     * 
+     * @example
+     * ```ts
+     * SelectMenu.BuildComponent();
+     * ```
+     */
+    public BuildComponent(): APIRoleSelectComponent[] {
+        return this._Components;
     };
 };

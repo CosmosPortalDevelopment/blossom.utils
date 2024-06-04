@@ -1,5 +1,5 @@
 import { ComponentType, type APIActionRowComponent, type APIChannelSelectComponent, type APIMessageActionRowComponent, type APIMessageComponent } from "discord-api-types/v10";
-import type { ChannelSelectMenu, MessageComponentActions } from "../../Interfaces";
+import type { ChannelSelectMenu } from "../../Interfaces";
 
 export class ChannelSelectMenuManager {
     private _Components: APIChannelSelectComponent[];
@@ -21,9 +21,7 @@ export class ChannelSelectMenuManager {
      *     min_values: 1,
      *     placeholder: "Choose a classroom"
      * })
-     * .BuildComponent({
-     *     build_action_row: true
-     * });
+     * .BuildActionRow();
      * ```
      */
     constructor() {
@@ -65,38 +63,31 @@ export class ChannelSelectMenuManager {
     };
 
     /**
-     * Either creates the action row containing the channel select menu component or returns the channel select menu component
-     * @param actions - The structure of actions required while building the component
+     * Creates the action row containing the channel select menu component
      * 
      * @example
      * ```ts
-     * SelectMenu.BuildComponent();
-     * ```
-     * 
-     * @example
-     * Returns the component in an action row
-     * ```ts
-     * SelectMenu.BuildComponent({
-     *     build_action_row: true
-     * });
-     * ```
-     *  
-     * @example
-     * Returns the component
-     * ```ts
-     * SelectMenu.BuildComponent({
-     *     build_action_row: false
-     * });
+     * SelectMenu.BuildActionRow();
      * ```
      */
-    public BuildComponent(actions?: MessageComponentActions): APIActionRowComponent<APIMessageActionRowComponent> | APIChannelSelectComponent[] {
-        actions = actions ?? { build_action_row: true };
-
+    public BuildActionRow(): APIActionRowComponent<APIMessageActionRowComponent> {
         const data: APIMessageComponent = {
             type: ComponentType.ActionRow,
             components: this._Components
         };
 
-        return !actions.build_action_row ? this._Components : data;
+        return data;
+    };
+
+    /**
+     * Returns the channel select menu component
+     * 
+     * @example
+     * ```ts
+     * SelectMenu.BuildComponent();
+     * ```
+     */
+    public BuildComponent(): APIChannelSelectComponent[] {
+        return this._Components;
     };
 };

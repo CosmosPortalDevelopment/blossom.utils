@@ -1,5 +1,5 @@
 import { ComponentType, type APIActionRowComponent, type APIButtonComponent, type APIButtonComponentWithCustomId, type APIButtonComponentWithURL, type APIMessageActionRowComponent, type APIMessageComponent } from "discord-api-types/v10";
-import type { LinkButton, MessageComponentActions, RegularButton } from "../../Interfaces";
+import type { LinkButton, RegularButton } from "../../Interfaces";
 
 export class ButtonManager {
     private _Components: APIButtonComponent[];
@@ -27,9 +27,7 @@ export class ButtonManager {
      *     emoji: undefined,
      *     label: "Click me!"
      * })
-     * .BuildComponent({
-     *     build_action_row: true
-     * });
+     * .BuildActionRow(});
      * ```
      */
     constructor() {
@@ -97,38 +95,31 @@ export class ButtonManager {
     };
 
     /**
-     * Either creates the action row containing the button components or returns the button components
-     * @param actions - The structure of actions required while building the components
+     * Creates the action row containing the button components
      * 
      * @example
      * ```ts
-     * Button.BuildComponent();
-     * ```
-     * 
-     * @example
-     * Returns the components in an action row
-     * ```ts
-     * Button.BuildComponent({
-     *     build_action_row: true
-     * });
-     * ```
-     *  
-     * @example
-     * Returns the components
-     * ```ts
-     * Button.BuildComponent({
-     *     build_action_row: false
-     * });
+     * Button.BuildActionRow();
      * ```
      */
-    public BuildComponent(actions?: MessageComponentActions): APIActionRowComponent<APIMessageActionRowComponent> | APIButtonComponent[] {
-        actions = actions ?? { build_action_row: true };
-
+    public BuildActionRow(): APIActionRowComponent<APIMessageActionRowComponent> {
         const data: APIMessageComponent = {
             type: ComponentType.ActionRow,
             components: this._Components
         };
 
-        return !actions.build_action_row ? this._Components : data;
+        return data;
+    };
+
+    /**
+     * Returns the button components
+     * 
+     * @example
+     * ```ts
+     * Button.BuildComponent();
+     * ```
+     */
+    public BuildComponent(): APIButtonComponent[] {
+        return this._Components;
     };
 };

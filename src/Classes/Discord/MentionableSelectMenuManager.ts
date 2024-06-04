@@ -1,5 +1,5 @@
 import { ComponentType, type APIActionRowComponent, type APIMentionableSelectComponent, type APIMessageActionRowComponent, type APIMessageComponent } from "discord-api-types/v10";
-import type { MentionableSelectMenu, MessageComponentActions } from "../../Interfaces";
+import type { MentionableSelectMenu } from "../../Interfaces";
 
 export class MentionableSelectMenuManager {
     private _Components: APIMentionableSelectComponent[];
@@ -21,9 +21,7 @@ export class MentionableSelectMenuManager {
      *     min_values: 1,
      *     placeholder: "Choose a class role or member"
      * })
-     * .BuildComponent({
-     *     build_action_row: true
-     * });
+     * .BuildActionRow();
      * ```
      */
     constructor() {
@@ -63,38 +61,31 @@ export class MentionableSelectMenuManager {
     };
 
     /**
-     * Either creates the action row containing the mentionable select menu component or returns the mentionable select menu component
-     * @param actions - The structure of actions required while building the component
+     * Creates the action row containing the mentionable select menu component
      * 
      * @example
      * ```ts
-     * SelectMenu.BuildComponent();
-     * ```
-     * 
-     * @example
-     * Returns the component in an action row
-     * ```ts
-     * SelectMenu.BuildComponent({
-     *     build_action_row: true
-     * });
-     * ```
-     *  
-     * @example
-     * Returns the component
-     * ```ts
-     * SelectMenu.BuildComponent({
-     *     build_action_row: false
-     * });
+     * SelectMenu.BuildActionRow();
      * ```
      */
-    public BuildComponent(actions?: MessageComponentActions): APIActionRowComponent<APIMessageActionRowComponent> | APIMentionableSelectComponent[] {
-        actions = actions ?? { build_action_row: true };
-
+    public BuildActionRow(): APIActionRowComponent<APIMessageActionRowComponent> {
         const data: APIMessageComponent = {
             type: ComponentType.ActionRow,
             components: this._Components
         };
 
-        return !actions.build_action_row ? this._Components : data;
+        return data;
+    };
+
+    /**
+     * Returns the mentionable select menu component
+     * 
+     * @example
+     * ```ts
+     * SelectMenu.BuildComponent();
+     * ```
+     */
+    public BuildComponent(): APIMentionableSelectComponent[] {
+        return this._Components;
     };
 };

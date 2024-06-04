@@ -1,5 +1,5 @@
 import { ComponentType, type APIActionRowComponent, type APIModalInteractionResponseCallbackData, type APITextInputComponent } from "discord-api-types/v10";
-import type { InteractionResponseActions, Modal, TextInput } from "../../Interfaces";
+import type { Modal, TextInput } from "../../Interfaces";
 
 export class ModalManager {
     private _title: string;
@@ -31,9 +31,7 @@ export class ModalManager {
      *     required: true,
      *     value: undefined
      * })
-     * .BuildComponent({
-     *     build_modal: true
-     * });
+     * .BuildResponse();
      * ```
      */
     constructor(component_data: Modal) {
@@ -83,39 +81,32 @@ export class ModalManager {
     };
 
     /**
-     * Either creates the modal response containing the text input components or returns the text input components
-     * @param actions - The structure of actions required while building the component
+     * Creates the modal response containing the text input components
      * 
      * @example
      * ```ts
-     * Modal.BuildComponent();
-     * ```
-     * 
-     * @example
-     * Returns the text input components in a modal response
-     * ```ts
-     * Modal.BuildComponent({
-     *     build_modal: true
-     * });
-     * ```
-     *  
-     * @example
-     * Returns the text input components
-     * ```ts
-     * Modal.BuildComponent({
-     *     build_modal: false
-     * });
+     * Modal.BuildResponse();
      * ```
      */
-    public BuildComponent(actions?: InteractionResponseActions): APIActionRowComponent<APITextInputComponent>[] | APIModalInteractionResponseCallbackData {
-        actions = actions ?? { build_modal: true };
-
+    public BuildResponse(): APIModalInteractionResponseCallbackData {
         const data: APIModalInteractionResponseCallbackData = {
             title: this._title,
             custom_id: this._custom_id,
             components: this._Components
         };
 
-        return !actions.build_modal ? this._Components : data;
+        return data;
+    };
+
+    /**
+     * Returns the text input components
+     * 
+     * @example
+     * ```ts
+     * Modal.BuildComponent();
+     * ```
+     */
+    public BuildComponent(): APIActionRowComponent<APITextInputComponent>[] {
+        return this._Components;
     };
 };
