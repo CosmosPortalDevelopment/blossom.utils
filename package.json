@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CosmosPortalDevelopment/blossom.utils.git"
+    "url": "git+https://github.com/CosmosPortal/blossom.utils.git"
   },
   "keywords": [],
   "author": "Cosmos Portal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CosmosPortalDevelopment/blossom.utils/issues"
+    "url": "https://github.com/CosmosPortal/blossom.utils/issues"
   },
-  "homepage": "https://github.com/CosmosPortalDevelopment/blossom.utils#readme",
+  "homepage": "https://github.com/CosmosPortal/blossom.utils#readme",
   "dependencies": {
     "discord-api-types": "^0.37.87",
     "discord.js": "^14.15.2"
