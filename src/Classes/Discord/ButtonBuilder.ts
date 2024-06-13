@@ -1,50 +1,44 @@
 import { ComponentType, type APIActionRowComponent, type APIButtonComponent, type APIButtonComponentWithCustomId, type APIButtonComponentWithURL, type APIMessageActionRowComponent, type APIMessageComponent } from "discord-api-types/v10";
 import type { LinkButton, RegularButton } from "../../Interfaces";
 
-export class ButtonManager {
-    private _Components: APIButtonComponent[];
+export class ButtonBuilder {
+    private readonly _data: APIButtonComponent[];
 
     /**
      * @example
      * ```ts
-     * const Button = new ButtonManager();
+     * const Button = new ButtonBuilder();
      * ```
      * @example
      * A fully created button:
      * ```ts
-     * const Button = new ButtonManager()
+     * const Button = new ButtonBuilder()
      * .CreateLinkButton({
      *     custom_id: "https://google.com/",
      *     style: ButtonStyle.Link,
-     *     disabled: false,
-     *     emoji: undefined,
      *     label: "View Link"
      * })
      * .CreateRegularButton({
      *     custom_id: "click_me",
      *     style: ButtonStyle.Primary,
-     *     disabled: false,
-     *     emoji: undefined,
      *     label: "Click me!"
      * })
-     * .BuildActionRow(});
+     * .BuildActionRow();
      * ```
      */
     constructor() {
-        this._Components = [];
+        this._data = [];
     };
 
     /**
-     * Creates a link button component
-     * @param component_data - The structure of data needed to create the component.
+     * Creates a Link Button component
+     * @param {LinkButton} component_data - The structure of data needed to create the Link Button component
      * 
      * @example
      * ```ts
      * Button.CreateLinkButton({
      *     custom_id: "https://google.com/",
      *     style: ButtonStyle.Link,
-     *     disabled: false,
-     *     emoji: undefined,
      *     label: "View Link"
      * });
      * ```
@@ -59,22 +53,20 @@ export class ButtonManager {
             label: component_data.label
         };
 
-        this._Components.push(data);
+        this._data.push(data);
 
         return this;
     };
 
     /**
-     * Creates a regular button component
-     * @param component_data - The structure of data needed to create the component.
+     * Creates a Regular Button component
+     * @param {RegularButton} component_data - The structure of data needed to create the Regular Button component
      * 
      * @example
      * ```ts
      * Button.CreateRegularButton({
      *     custom_id: "click_me",
      *     style: ButtonStyle.Primary,
-     *     disabled: false,
-     *     emoji: undefined,
      *     label: "Click me!"
      * });
      * ```
@@ -89,13 +81,13 @@ export class ButtonManager {
             label: component_data.label
         };
 
-        this._Components.push(data);
+        this._data.push(data);
 
         return this;
     };
 
     /**
-     * Creates the action row containing the button components
+     * Builds the action row containing the Link/Regular Button components
      * 
      * @example
      * ```ts
@@ -105,21 +97,21 @@ export class ButtonManager {
     public BuildActionRow(): APIActionRowComponent<APIMessageActionRowComponent> {
         const data: APIMessageComponent = {
             type: ComponentType.ActionRow,
-            components: this._Components
+            components: this._data
         };
 
         return data;
     };
 
     /**
-     * Returns the button components
+     * Returns all the Button components
      * 
      * @example
      * ```ts
-     * Button.BuildComponent();
+     * Button.Components;
      * ```
      */
-    public BuildComponent(): APIButtonComponent[] {
-        return this._Components;
+    public get Components(): APIButtonComponent[] {
+        return this._data;
     };
 };

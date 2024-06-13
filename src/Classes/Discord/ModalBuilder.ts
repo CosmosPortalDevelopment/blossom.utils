@@ -1,10 +1,10 @@
 import { ComponentType, type APIActionRowComponent, type APIModalInteractionResponseCallbackData, type APITextInputComponent } from "discord-api-types/v10";
 import type { Modal, TextInput } from "../../Interfaces";
 
-export class ModalManager {
-    private _title: string;
-    private _custom_id: string;
-    private _Components: APIActionRowComponent<APITextInputComponent>[];
+export class ModalBuilder {
+    private readonly _title: string;
+    private readonly _custom_id: string;
+    private readonly _data: APIActionRowComponent<APITextInputComponent>[];
 
     /**
      * @example
@@ -29,20 +29,19 @@ export class ModalManager {
      *     min_length: 1,
      *     placeholder: "John",
      *     required: true,
-     *     value: undefined
      * })
      * .BuildResponse();
      * ```
      */
-    constructor(component_data: Modal) {
-        this._title = component_data.title;
-        this._custom_id = component_data.custom_id;
-        this._Components = [];
+    constructor(data: Modal) {
+        this._title = data.title;
+        this._custom_id = data.custom_id;
+        this._data = [];
     };
 
     /**
-     * Creates the text input component for the modal
-     * @param component_data - The structure of data needed to create the component.
+     * Creates the Text Input component for the Modal
+     * @param {TextInput} component_data - The structure of data needed to create the Text Input component
      * 
      * @example
      * ```ts
@@ -54,7 +53,6 @@ export class ModalManager {
      *     min_length: 1,
      *     placeholder: "John",
      *     required: true,
-     *     value: undefined
      * });
      */
     public CreateTextInput(component_data: TextInput): this {
@@ -75,13 +73,13 @@ export class ModalManager {
             ]
         };
 
-        this._Components.push(data);
+        this._data.push(data);
 
         return this;
     };
 
     /**
-     * Creates the modal response containing the text input components
+     * Builds the Modal response containing the Text Input components
      * 
      * @example
      * ```ts
@@ -92,21 +90,21 @@ export class ModalManager {
         const data: APIModalInteractionResponseCallbackData = {
             title: this._title,
             custom_id: this._custom_id,
-            components: this._Components
+            components: this._data
         };
 
         return data;
     };
 
     /**
-     * Returns the text input components
+     * Returns all the Text Input components
      * 
      * @example
      * ```ts
-     * Modal.BuildComponent();
+     * Modal.Components;
      * ```
      */
-    public BuildComponent(): APIActionRowComponent<APITextInputComponent>[] {
-        return this._Components;
+    public get Components(): APIActionRowComponent<APITextInputComponent>[] {
+        return this._data;
     };
 };
