@@ -1,4 +1,4 @@
-import type { APIMessageComponentEmoji, ButtonStyle } from "discord-api-types/v10";
+import type { APIMessageComponentEmoji, ButtonStyle } from "discord.js";
 import type { BaseComponent } from "./BaseComponent";
 
 export interface RegularButton extends BaseComponent {

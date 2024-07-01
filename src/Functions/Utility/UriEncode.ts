@@ -4,15 +4,7 @@
  * 
  * @example
  * ```ts
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- *     const text = interaction.options.getString("text", true);
- * 
- *     await interaction.reply({
- *         content: `Encoded text result: ${UriEncode(text)}`
- *     });
- * });
+ * console.log(UriEncode("Random symbols: !@#$")); // URI encode the symbols only
  * ```
  */
 export function UriEncode(text: string): string {

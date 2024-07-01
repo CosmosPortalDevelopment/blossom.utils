@@ -1,4 +1,4 @@
-import type { TextInputStyle } from "discord-api-types/v10";
+import type { TextInputStyle } from "discord.js";
 import type { BaseComponent } from "./BaseComponent";
 
 export interface TextInput extends BaseComponent {

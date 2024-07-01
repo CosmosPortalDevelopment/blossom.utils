@@ -12,7 +12,7 @@ npm install @cosmosportal/blossom.utils
 
 ## Documentation
 
-Our official documentation are in the works.
+Our official documentation is in the works.
 
 ## Contributing
 

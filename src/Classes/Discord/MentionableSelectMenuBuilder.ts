@@ -1,4 +1,4 @@
-import { ComponentType, type APIActionRowComponent, type APIMentionableSelectComponent, type APIMessageActionRowComponent, type APIMessageComponent } from "discord-api-types/v10";
+import { ComponentType, type APIActionRowComponent, type APIMentionableSelectComponent, type APIMessageActionRowComponent, type APIMessageComponent } from "discord.js";
 import type { MentionableSelectMenu } from "../../Interfaces";
 
 export class MentionableSelectMenuBuilder {

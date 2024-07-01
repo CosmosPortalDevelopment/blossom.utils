@@ -8,15 +8,7 @@ import type { Snowflake } from "../../Types";
  * 
  * @example
  * ```ts
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- *     const user = interaction.options.getUser("user", true);
- * 
- *     await interaction.reply({
- *         content: `Is <@${user.id}> banned?\nResult: ${MemberBannedStatus(interaction.guild, user.id)}`
- *     });
- * });
+ * if (!await MemberBannedStatus(guild, user.id)) return;
  * ```
  */
 export async function MemberBannedStatus(guild: Guild, user_id: Snowflake): Promise<boolean> {

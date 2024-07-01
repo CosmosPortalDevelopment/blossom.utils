@@ -1,4 +1,4 @@
-import type { SelectMenuDefaultValueType } from "discord-api-types/v10";
+import type { SelectMenuDefaultValueType } from "discord.js";
 
 export type UserDefaultValue = {
     id: string,

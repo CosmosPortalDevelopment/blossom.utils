@@ -4,15 +4,7 @@
  * 
  * @example
  * ```
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- *     const hex = interaction.options.getString("hex", true);
- * 
- *     await interaction.reply({
- *         content: `Is this text a hex code?\nResult: ${IsValidHex(hex)}`
- *     });
- * });
+ * if (!IsValidHex("FFB7C5")) return;
  * ```
  */
 export function IsValidHex(color: string): boolean {

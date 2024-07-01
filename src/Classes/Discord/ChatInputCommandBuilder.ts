@@ -1,4 +1,4 @@
-import type { RESTPostAPIChatInputApplicationCommandsJSONBody } from "discord-api-types/v10";
+import type { RESTPostAPIChatInputApplicationCommandsJSONBody } from "discord.js";
 import type { ChatInputCommand } from "../../Interfaces";
 
 export class ChatInputCommandBuilder {
@@ -34,9 +34,7 @@ export class ChatInputCommandBuilder {
             options: data.options,
             default_member_permissions: data.default_member_permissions,
             dm_permission: data.dm_permission,
-            nsfw: data.nsfw,
-            integration_types: data.integration_types,
-            contexts: data.contexts
+            nsfw: data.nsfw
         };
     };
 

@@ -9,40 +9,20 @@ import type { GuildChannelCountType } from "../../Types";
  * @example
  * Checks the amount of categories the server has. This example uses ChannelType type:
  * ```ts
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- * 
- *     await interaction.reply({
- *         content: `How many categories does this server have?\nResult: ${GuildChannelCount(interaction.guild, ChannelType.GuildCategory)}`
- *     });
- * });
+ * console.log(await GuildChannelCount(guild, ChannelType.PrivateThread));
  * ```
  * @example
  * Checks the amount of channels of each type the server has. This example uses the "all" type:
  * ```ts
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- *     await interaction.reply({
- *         content: `How many channels does this server have?\nResult: ${GuildChannelCount(interaction.guild, "all")}`
- *     });
- * });
+ * console.log(await GuildChannelCount(guild, "all"));
  * ```
  * @example
  * Checks the amount of threads the server has. This example uses the ChannelType type in an array:
  * ```ts
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- * 
- *     await interaction.reply({
- *         content: `How many threads does this server have?\nResult: ${GuildChannelCount(interaction.guild, [ ChannelType.PrivateThread, ChannelType.PublicThread ])}`
- *     });
- * });
+ * console.log(await GuildChannelCount(guild, [ ChannelType.PrivateThread, ChannelType.PublicThread ]));
  * ```
  */
-export async function GuildChannelCount(guild: Guild, type: GuildChannelCountType): Promise<number> {
+export function GuildChannelCount(guild: Guild, type: GuildChannelCountType): number {
     const channels = guild.channels.cache;
 
     if (type === "all") return channels.size;

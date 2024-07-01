@@ -1,4 +1,4 @@
-import { ComponentType, type APIActionRowComponent, type APIModalInteractionResponseCallbackData, type APITextInputComponent } from "discord-api-types/v10";
+import { ComponentType, type APIActionRowComponent, type APIModalInteractionResponseCallbackData, type APITextInputComponent } from "discord.js";
 import type { Modal, TextInput } from "../../Interfaces";
 
 export class ModalBuilder {
@@ -13,24 +13,6 @@ export class ModalBuilder {
      *     custom_id: "cool_modal",
      *     title: "My Cool Modal"
      * });
-     * ```
-     * @example
-     * A fully created modal:
-     * ```ts
-     * const Modal = new ModalManager({
-     *     custom_id: "cool_modal",
-     *     title: "My Cool Modal"
-     * })
-     * .CreateTextInput({
-     *     custom_id: "name",
-     *     label: "Name",
-     *     style: TextInputStyle.Short,
-     *     max_length: 4000,
-     *     min_length: 1,
-     *     placeholder: "John",
-     *     required: true,
-     * })
-     * .BuildResponse();
      * ```
      */
     constructor(data: Modal) {
@@ -54,6 +36,7 @@ export class ModalBuilder {
      *     placeholder: "John",
      *     required: true,
      * });
+     * ```
      */
     public CreateTextInput(component_data: TextInput): this {
         const data: APIActionRowComponent<APITextInputComponent> = {

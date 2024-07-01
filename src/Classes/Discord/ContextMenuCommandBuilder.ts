@@ -1,4 +1,4 @@
-import type { RESTPostAPIContextMenuApplicationCommandsJSONBody } from "discord-api-types/v10";
+import type { RESTPostAPIContextMenuApplicationCommandsJSONBody } from "discord.js";
 import type { ContextMenuCommand } from "../../Interfaces";
 
 export class ContextMenuCommandBuilder {
@@ -23,9 +23,7 @@ export class ContextMenuCommandBuilder {
             name_localizations: data.name_localizations,
             default_member_permissions: data.default_member_permissions,
             dm_permission: data.dm_permission,
-            nsfw: data.nsfw,
-            integration_types: data.integration_types,
-            contexts: data.contexts
+            nsfw: data.nsfw
         };
     };
 

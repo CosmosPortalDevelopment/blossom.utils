@@ -5,16 +5,7 @@
  * 
  * @example
  * ```ts
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- *     const min = interaction.options.getNumber("min", true);
- *     const max = interaction.options.getNumber("max", true);
- * 
- *     await interaction.reply({
- *         content: `Random number: ${RandomNumber(min, max)}`
- *     });
- * });
+ * console.log(RandomNumber(100, 1000)); // Ouputs a number from 100-1000
  * ```
  */
 export function RandomNumber(start: number, end: number): number {

@@ -9,15 +9,7 @@ import type { Snowflake } from "../../Types";
  * 
  * @example
  * ```ts
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- *     const member = interaction.options.getUser("member", true);
- * 
- *     await interaction.reply({
- *         content: `Does <@${member.id}> have Ban Members permission?\nResult: ${MemberHasPermissions(interaction.guild, member.id, [ PermissionsBitField.Flags.BanMembers ])}`
- *     });
- * });
+ * if (!await MemberHasPermissions(guild, member.id, [ PermissionsBitField.Flags.BanMembers ])) return;
  * ```
  */
 export async function MemberHasPermissions(guild: Guild, member_id: Snowflake, permissions: PermissionResolvable[]): Promise<boolean | undefined> {

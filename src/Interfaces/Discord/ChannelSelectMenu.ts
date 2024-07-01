@@ -1,4 +1,4 @@
-import type { ChannelType } from "discord-api-types/v10";
+import type { ChannelType } from "discord.js";
 import type { BaseSelectMenu } from "./BaseSelectMenu";
 import type { ChannelDefaultValue } from "../../Types";
 

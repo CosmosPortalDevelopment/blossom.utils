@@ -8,15 +8,7 @@ import type { Snowflake } from "../../Types";
  * 
  * @example
  * ```ts
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- *     const member = interaction.options.getUser("member", true);
- * 
- *     await interaction.reply({
- *         content: `Is <@${member.id}> timed out?\nResult: ${MemberTimeoutStatus(interaction.guild, member.id)}`
- *     });
- * });
+ * if (!await MemberTimeoutStatus(guild, member.id)) return;
  * ```
  */
 export async function MemberTimeoutStatus(guild: Guild, member_id: Snowflake): Promise<boolean | undefined> {

@@ -4,15 +4,7 @@
  * 
  * @example
  * ```ts
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- *     const emoji = interaction.options.getString("emoji", true);
- * 
- *     await interaction.reply({
- *         content: `Is this an unicode emoji?\nResult: ${IsValidUnicodeEmoji(emoji)}`
- *     });
- * });
+ * if (!IsValidUnicodeEmoji("🤷‍♂️")) return;
  * ```
  */
 export function IsValidUnicodeEmoji(emoji: string): boolean {

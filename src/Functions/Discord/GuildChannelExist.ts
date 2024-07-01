@@ -8,15 +8,7 @@ import type { Snowflake } from "../../Types";
  * 
  * @example
  * ```ts
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- *     const channel_id = interaction.options.getString("channel_id", true);
- * 
- *     await interaction.reply({
- *         content: `Does channel exist in this server?\nResult: ${GuildChannelExist(interaction.guild, channel_id)}`
- *     });
- * });
+ * if (!await GuildChannelExist(guild, channel.id)) return;
  * ```
  */
 export async function GuildChannelExist(guild: Guild, channel_id: Snowflake): Promise<boolean> {

@@ -1,4 +1,4 @@
-import { ComponentType, type APIActionRowComponent, type APIButtonComponent, type APIButtonComponentWithCustomId, type APIButtonComponentWithURL, type APIMessageActionRowComponent, type APIMessageComponent } from "discord-api-types/v10";
+import { ButtonStyle, ComponentType, type APIActionRowComponent, type APIButtonComponent, type APIButtonComponentWithCustomId, type APIButtonComponentWithURL, type APIMessageActionRowComponent, type APIMessageComponent } from "discord.js";
 import type { LinkButton, RegularButton } from "../../Interfaces";
 
 export class ButtonBuilder {
@@ -8,22 +8,6 @@ export class ButtonBuilder {
      * @example
      * ```ts
      * const Button = new ButtonBuilder();
-     * ```
-     * @example
-     * A fully created button:
-     * ```ts
-     * const Button = new ButtonBuilder()
-     * .CreateLinkButton({
-     *     custom_id: "https://google.com/",
-     *     style: ButtonStyle.Link,
-     *     label: "View Link"
-     * })
-     * .CreateRegularButton({
-     *     custom_id: "click_me",
-     *     style: ButtonStyle.Primary,
-     *     label: "Click me!"
-     * })
-     * .BuildActionRow();
      * ```
      */
     constructor() {
@@ -37,8 +21,7 @@ export class ButtonBuilder {
      * @example
      * ```ts
      * Button.CreateLinkButton({
-     *     custom_id: "https://google.com/",
-     *     style: ButtonStyle.Link,
+     *     custom_id: "https://example.com/",
      *     label: "View Link"
      * });
      * ```
@@ -46,7 +29,7 @@ export class ButtonBuilder {
     public CreateLinkButton(component_data: LinkButton): this {
         const data: APIButtonComponentWithURL = {
             type: ComponentType.Button,
-            style: component_data.style,
+            style: ButtonStyle.Link,
             url: component_data.custom_id,
             disabled: component_data.disabled,
             emoji: component_data.emoji,
@@ -87,7 +70,7 @@ export class ButtonBuilder {
     };
 
     /**
-     * Builds the action row containing the Link/Regular Button components
+     * Builds the action row containing the Link, Premium, and/or Regular Button components
      * 
      * @example
      * ```ts

@@ -1,4 +1,4 @@
-import { ComponentType, type APIActionRowComponent, type APIMessageActionRowComponent, type APIMessageComponent, type APIUserSelectComponent } from "discord-api-types/v10";
+import { ComponentType, type APIActionRowComponent, type APIMessageActionRowComponent, type APIMessageComponent, type APIUserSelectComponent } from "discord.js";
 import type { UserSelectMenu } from "../../Interfaces";
 
 export class UserSelectMenuBuilder {

@@ -8,19 +8,9 @@ import type { Snowflake } from "../../Types";
  * @param {Snowflake} user_id - The ID of the target user to compare
  * @param {boolean} custom_boolean - If an error occurs, returns the boolean you entered
  * 
- * @default false
- * 
  * @example
  * ```ts
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- *     const target = interaction.options.getUser("target", true);
- * 
- *     await interaction.reply({
- *         content: `Do you have a higher rank than <@${target.id}>?\nResult: ${CompareRolePosition(interaction.guild, interaction.user.id, target.id, false)}`
- *     });
- * });
+ * if (!await CompareRolePosition(guild, user.id, target.id, false)) return;
  * ```
  */
 export async function CompareRolePosition(guild: Guild, user_id: Snowflake, target_id: Snowflake, custom_boolean: boolean = false): Promise<boolean> {

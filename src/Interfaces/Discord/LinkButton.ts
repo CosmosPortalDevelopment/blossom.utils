@@ -1,13 +1,7 @@
-import type { APIMessageComponentEmoji, ButtonStyle } from "discord-api-types/v10";
+import type { APIMessageComponentEmoji } from "discord.js";
 import type { BaseComponent } from "./BaseComponent";
 
 export interface LinkButton extends BaseComponent {
-    /**
-     * A button style
-     * 
-     * @note `ButtonStyle.Link` must be used here.
-     */
-    style: ButtonStyle.Link;
     /**
      * Whether the button is disabled
      * 

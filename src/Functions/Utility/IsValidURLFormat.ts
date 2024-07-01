@@ -4,15 +4,7 @@
  * 
  * @example
  * ```ts
- * client.on(Events.InteractionCreate, async interaction => {
- *     if (!interaction.inCachedGuild || !interaction.isChatInputCommand()) return;
- * 
- *     const url = interaction.options.getString("url", true);
- * 
- *     await interaction.reply({
- *         content: `Is the URL a valid format?\nResult: ${IsValidURLFormat(url)}`
- *     });
- * });
+ * if (!IsValidURLFormat("https://example.com/")) return;
  * ```
  */
 export function IsValidURLFormat(url: string): boolean {
